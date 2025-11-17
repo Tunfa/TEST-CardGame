@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://ksbkoj0a17u4"]
+
+[ext_resource type="Script" uid="uid://cbsyxa54opbe3" path="res://scripts/ui/RestButton.gd" id="1_h8mdq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8mdq"]
+bg_color = Color(0.3, 0.3, 0.3, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pv1qc"]
+bg_color = Color(0.3, 0.6, 0.9, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi4lv"]
+bg_color = Color(0.15, 0.4, 0.7, 1)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vn6lb"]
+bg_color = Color(0.2, 0.8, 0.8, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.7, 0.8, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="RestButton" type="Button"]
+custom_minimum_size = Vector2(150, 40)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 150.0
+offset_bottom = 20.0
+grow_vertical = 2
+theme_override_colors/font_hover_color = Color(1, 1, 0.5, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("StyleBoxFlat_h8mdq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pv1qc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yi4lv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vn6lb")
+text = "休息 (恢復SP)"
+script = ExtResource("1_h8mdq")

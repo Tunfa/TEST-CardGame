@@ -1,0 +1,360 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1ggmv30sgbys"]
+
+[ext_resource type="Script" uid="uid://dg22xqyfqfkbl" path="res://scripts/ui/GachaScreen.gd" id="1_abc123"]
+[ext_resource type="PackedScene" uid="uid://cltoh5fc8n4ob" path="res://scenes/inventory/CardDetailPanel.tscn" id="2_carddetail"]
+
+[node name="GachaScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_abc123")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopBar" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -30.0
+offset_right = 128.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "← 返回"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CurrencyContainer" type="HBoxContainer" parent="VBoxContainer/TopBar/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="GoldLabel" type="Label" parent="VBoxContainer/TopBar/HBoxContainer/CurrencyContainer"]
+layout_mode = 2
+text = "💰 1000"
+vertical_alignment = 1
+
+[node name="GemLabel" type="Label" parent="VBoxContainer/TopBar/HBoxContainer/CurrencyContainer"]
+layout_mode = 2
+text = "💎 100"
+vertical_alignment = 1
+
+[node name="TicketLabel" type="Label" parent="VBoxContainer/TopBar/HBoxContainer/CurrencyContainer"]
+layout_mode = 2
+text = "🎫 10"
+vertical_alignment = 1
+
+[node name="MainContent" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="LeftPanel" type="Panel" parent="VBoxContainer/MainContent"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MainContent/LeftPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/MainContent/LeftPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/MainContent/LeftPanel/MarginContainer/VBox"]
+layout_mode = 2
+text = "卡池選擇"
+horizontal_alignment = 1
+
+[node name="PoolsScroll" type="ScrollContainer" parent="VBoxContainer/MainContent/LeftPanel/MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PoolsContainer" type="VBoxContainer" parent="VBoxContainer/MainContent/LeftPanel/MarginContainer/VBox/PoolsScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="CenterPanel" type="Panel" parent="VBoxContainer/MainContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MainContent/CenterPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="DisplayArea" type="VBoxContainer" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/DisplayArea"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PreviewContainer" type="VBoxContainer" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/DisplayArea/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PoolTitle" type="Label" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/DisplayArea/CenterContainer/PreviewContainer"]
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "標準卡池"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PoolDescription" type="Label" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/DisplayArea/CenterContainer/PreviewContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "包含所有標準卡片的常駐卡池"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ShowcaseCards" type="HBoxContainer" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/DisplayArea/CenterContainer/PreviewContainer"]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="PityCounter" type="Panel" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/PityCounter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CurrentPity" type="Label" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/PityCounter/HBox"]
+layout_mode = 2
+text = "距離保底: 90抽"
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/PityCounter/HBox"]
+layout_mode = 2
+
+[node name="TotalPulls" type="Label" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/PityCounter/HBox"]
+layout_mode = 2
+text = "累計: 0次"
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/PityCounter/HBox"]
+layout_mode = 2
+
+[node name="LastLegendary" type="Label" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/PityCounter/HBox"]
+layout_mode = 2
+text = "上次傳說: 0抽前"
+vertical_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SinglePullButton" type="Button" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "單抽 💎1"
+
+[node name="TenPullButton" type="Button" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "十連 💎10"
+
+[node name="DetailsButton" type="Button" parent="VBoxContainer/MainContent/CenterPanel/VBoxContainer/ButtonsContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+text = "查看詳情"
+
+[node name="RightPanel" type="Panel" parent="VBoxContainer/MainContent"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MainContent/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="VBoxContainer/MainContent/RightPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/MainContent/RightPanel/MarginContainer/VBox"]
+layout_mode = 2
+text = "抽卡記錄"
+horizontal_alignment = 1
+
+[node name="HistoryScroll" type="ScrollContainer" parent="VBoxContainer/MainContent/RightPanel/MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HistoryList" type="VBoxContainer" parent="VBoxContainer/MainContent/RightPanel/MarginContainer/VBox/HistoryScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResultOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="ResultPanel" type="PanelContainer" parent="ResultOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="ResultOverlay/ResultPanel"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="ResultOverlay/ResultPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "抽卡結果"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ResultOverlay/ResultPanel/VBox"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardsContainer" type="GridContainer" parent="ResultOverlay/ResultPanel/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 5
+
+[node name="ConfirmButton" type="Button" parent="ResultOverlay/ResultPanel/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "確認"
+
+[node name="DetailsOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="DetailsPanel" type="PanelContainer" parent="DetailsOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -350.0
+offset_right = 400.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="DetailsOverlay/DetailsPanel"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="PoolName" type="Label" parent="DetailsOverlay/DetailsPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "卡池詳情"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="DetailsOverlay/DetailsPanel/VBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DetailsOverlay/DetailsPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "掉落機率"
+
+[node name="RatesContainer" type="VBoxContainer" parent="DetailsOverlay/DetailsPanel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HSeparator2" type="HSeparator" parent="DetailsOverlay/DetailsPanel/VBox"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="DetailsOverlay/DetailsPanel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "可獲得卡片"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DetailsOverlay/DetailsPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardList" type="VBoxContainer" parent="DetailsOverlay/DetailsPanel/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="CloseButton" type="Button" parent="DetailsOverlay/DetailsPanel/VBox"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "關閉"
+
+[node name="CardDetailPanel" parent="." instance=ExtResource("2_carddetail")]
+z_index = 200
+layout_mode = 1

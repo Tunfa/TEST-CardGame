@@ -1,0 +1,44 @@
+{
+  "tabs": [
+	{
+	  "id": "gift_packs",
+	  "name": "禮包",
+	  "icon": "🎁",
+	  "type": "shop_items",
+	  "category": "gift_packs",
+	  "description": "購買超值禮包"
+	},
+	{
+	  "id": "single_cards",
+	  "name": "單卡",
+	  "icon": "🃏",
+	  "type": "shop_items",
+	  "category": "single_cards",
+	  "description": "購買指定卡片"
+	},
+	{
+	  "id": "items",
+	  "name": "道具",
+	  "icon": "📦",
+	  "type": "shop_items",
+	  "category": "items",
+	  "description": "購買遊戲道具"
+	},
+	{
+	  "id": "diamonds",
+	  "name": "鑽石",
+	  "icon": "💎",
+	  "type": "shop_items",
+	  "category": "diamonds",
+	  "description": "用金幣兌換鑽石"
+	},
+	{
+	  "id": "gacha",
+	  "name": "抽卡",
+	  "icon": "🎰",
+	  "type": "navigate",
+	  "action": "goto_gacha",
+	  "description": "進入抽卡系統"
+	},
+  ]
+}

@@ -1,0 +1,173 @@
+[gd_scene load_steps=5 format=3 uid="uid://bosnjbrp1kmx6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykqsj"]
+bg_color = Color(0.15, 0.15, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.4, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="GDScript" id="GDScript_0m027"]
+script/source = "# TeamListItem.gd
+# 隊伍列表項目
+extends PanelContainer
+
+# ==================== 信號 ====================
+signal edit_clicked(team_id: String)
+signal delete_clicked(team_id: String)
+signal set_default_clicked(team_id: String)
+
+# ==================== 引用 ====================
+@onready var team_name_label = $MarginContainer/HBoxContainer/VBoxContainer/HeaderContainer/TeamNameLabel
+@onready var default_badge = $MarginContainer/HBoxContainer/VBoxContainer/HeaderContainer/DefaultBadge
+@onready var members_label = $MarginContainer/HBoxContainer/VBoxContainer/MembersLabel
+@onready var edit_button = $MarginContainer/HBoxContainer/ButtonContainer/EditButton
+@onready var delete_button = $MarginContainer/HBoxContainer/ButtonContainer/DeleteButton
+
+# ==================== 資料 ====================
+var team_id: String = \"\"
+var is_default: bool = false
+
+# ==================== 初始化 ====================
+
+func _ready():
+	edit_button.pressed.connect(_on_edit_pressed)
+	delete_button.pressed.connect(_on_delete_pressed)
+
+func setup(p_team_id: String, team_data: Dictionary):
+	\"\"\"設定隊伍資訊\"\"\"
+	team_id = p_team_id
+	
+	# 設定隊伍名稱
+	team_name_label.text = team_data.get(\"team_name\", \"未命名隊伍\")
+	
+	# 設定成員列表
+	var member_ids = [team_data.get(\"leader_card_id\", \"\")]
+	member_ids.append_array(team_data.get(\"member_card_ids\", []))
+	
+	var member_names = []
+	for card_id in member_ids:
+		if not card_id.is_empty():
+			member_names.append(get_card_name(card_id))
+	
+	if member_names.is_empty():
+		members_label.text = \"成員：無\"
+	else:
+		members_label.text = \"成員：%s\" % \"、\".join(member_names)
+
+func set_as_default(is_default_team: bool):
+	\"\"\"設定為預設隊伍\"\"\"
+	is_default = is_default_team
+	default_badge.visible = is_default
+	
+	# 更新邊框
+	var style = get_theme_stylebox(\"panel\").duplicate() as StyleBoxFlat
+	if is_default:
+		style.border_color = Color(1.0, 0.9, 0.3, 1.0)  # 金色
+		style.border_width_left = 3
+		style.border_width_top = 3
+		style.border_width_right = 3
+		style.border_width_bottom = 3
+	else:
+		style.border_color = Color(0.4, 0.4, 0.6, 1.0)
+		style.border_width_left = 2
+		style.border_width_top = 2
+		style.border_width_right = 2
+		style.border_width_bottom = 2
+	add_theme_stylebox_override(\"panel\", style)
+
+func get_card_name(card_id: String) -> String:
+	\"\"\"獲取卡片名稱\"\"\"
+	var card = DataManager.get_card(card_id)
+	if card:
+		return card.card_name
+	else:
+		return \"未知\"
+
+# ==================== 輸入處理 ====================
+
+func _gui_input(event: InputEvent):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_RIGHT:
+			# 右鍵設為預設
+			set_default_clicked.emit(team_id)
+
+func _on_edit_pressed():
+	\"\"\"編輯按鈕\"\"\"
+	edit_clicked.emit(team_id)
+
+func _on_delete_pressed():
+	\"\"\"刪除按鈕\"\"\"
+	delete_clicked.emit(team_id)
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u44dp"]
+bg_color = Color(0.2, 0.6, 0.8, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7oke"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TeamListItem" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 100)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ykqsj")
+script = SubResource("GDScript_0m027")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TeamNameLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "隊伍1"
+
+[node name="DefaultBadge" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HeaderContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 16
+text = "★ 預設"
+
+[node name="MembersLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "成員：戰士、法師、遊俠"
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="EditButton" type="Button" parent="MarginContainer/HBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_u44dp")
+text = "編輯"
+
+[node name="DeleteButton" type="Button" parent="MarginContainer/HBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_b7oke")
+text = "刪除"

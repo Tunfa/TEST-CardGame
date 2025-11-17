@@ -1,0 +1,259 @@
+{
+	"enemy_skills": [
+		{
+			"skill_id": "ES_REQUIRE_COMBO_10",
+			"skill_name": "連擊盾",
+			"description": "需斬擊累積10連擊才可對敵人造成傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_COMBO",
+					"required_combo": 5
+				}
+			]
+		},
+		{
+			"skill_id": "ES_REQUIRE_FIRE_5",
+			"skill_name": "火焰結界",
+			"description": "需斬擊累積5粒火屬性靈珠才可對敵人造成傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_ORB_TOTAL",
+					"required_element": "FIRE",
+					"required_count": 5
+				}
+			]
+		},
+		{
+			"skill_id": "ES_REQUIRE_CONTINUOUS_WATER_3",
+			"skill_name": "連續水珠",
+			"description": "需連續斬擊3粒水屬性靈珠才可對敵人造成傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_ORB_CONTINUOUS",
+					"required_element": "WATER",
+					"required_count": 3
+				}
+			]
+		},
+		{
+			"skill_id": "ES_DAMAGE_REDUCTION_50",
+			"skill_name": "堅硬外殼",
+			"description": "降低所受50%傷害",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_REDUCTION_PERCENT",
+					"reduction_percent": 50.0
+				}
+			]
+		},
+		{
+			"skill_id": "ES_SEAL_SKILL_3",
+			"skill_name": "技能封印",
+			"description": "封鎖3回合主動技能",
+			"effects": [
+				{
+					"effect_type": "SEAL_ACTIVE_SKILL",
+					"duration": 3
+				}
+			]
+		},
+		{
+			"skill_id": "ES_DISABLE_FIRE_2",
+			"skill_name": "火焰禁錮",
+			"description": "2回合內火屬性靈珠斬擊無效",
+			"effects": [
+				{
+					"effect_type": "DISABLE_ELEMENT_SLASH",
+					"target_element": "FIRE",
+					"duration": 2
+				}
+			]
+		},
+		{
+			"skill_id": "ES_REMOVE_WATER_3",
+			"skill_name": "水珠吞噬",
+			"description": "每回合隨機減少玩家3粒水屬性靈珠",
+			"effects": [
+				{
+					"effect_type": "REMOVE_RANDOM_ORBS",
+					"target_element": "WATER",
+					"count": 3
+				}
+			]
+		},
+		{
+			"skill_id": "ES_REDUCE_TIME_2S",
+			"skill_name": "時間壓縮",
+			"description": "斬擊時間減少2秒",
+			"effects": [
+				{
+					"effect_type": "REDUCE_SLASH_TIME",
+					"reduce_seconds": 4.0
+				}
+			]
+		},
+		{
+			"skill_id": "ES_ZERO_RECOVERY_2",
+			"skill_name": "回復封印",
+			"description": "2回合內回復力歸零",
+			"effects": [
+				{
+					"effect_type": "ZERO_RECOVERY",
+					"duration": 2
+				}
+			]
+		},
+		{
+			"skill_id": "ES_ENTER_HP_1",
+			"skill_name": "致命光環",
+			"description": "進場時生命力扣至1",
+			"effects": [
+				{
+					"effect_type": "ENTER_HP_TO_ONE"
+				}
+			]
+		},
+		{
+			"skill_id": "ES_DEATH_DAMAGE_1000",
+			"skill_name": "死亡詛咒",
+			"description": "自身死亡時對玩家造成1000點傷害",
+			"effects": [
+				{
+					"effect_type": "DEATH_DAMAGE",
+					"damage": 1000
+				}
+			]
+		},
+		{
+			"skill_id": "ES_REVIVE_ONCE",
+			"skill_name": "不死之身",
+			"description": "自身可以復活一次",
+			"effects": [
+				{
+					"effect_type": "REVIVE_ONCE"
+				}
+			]
+		},
+		{
+			"skill_id": "ES_REQUIRE_3_ELEMENTS",
+			"skill_name": "三元結界",
+			"description": "需斬擊3種屬性靈珠才能造成傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_ELEMENTS",
+					"required_unique_elements": 3
+				}
+			]
+		},
+		{
+			"skill_id": "ES_DAMAGE_BY_PLAYER_ORBS",
+			"skill_name": "以多為強",
+			"description": "玩家靈珠越多敵人傷害越高，最高2倍",
+			"effects": [
+				{
+					"effect_type": "ENEMY_DAMAGE_BY_PLAYER_ORBS",
+					"base_multiplier": 1.0,
+					"max_multiplier": 2.0,
+					"orb_per_tier": 5
+				}
+			]
+		},
+		{
+			"skill_id": "ES_COMBO_SHIELD_DAMAGE_REDUCTION",
+			"skill_name": "複合防禦",
+			"description": "需10連擊才能造成傷害，並降低30%傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_COMBO",
+					"required_combo": 10
+				},
+				{
+					"effect_type": "DAMAGE_REDUCTION_PERCENT",
+					"reduction_percent": 30.0
+				}
+			]
+		},
+		{
+			"skill_id": "ES_COMBO_EXACT_7",
+			"skill_name": "精確連擊",
+			"description": "須保持連擊數 = 7 連擊才可造成傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_COMBO_EXACT",
+					"required_combo": 7
+				}
+			]
+		},
+		{
+			"skill_id": "ES_COMBO_MAX_5",
+			"skill_name": "弱者之盾",
+			"description": "連擊數不可高於 5 連擊，否則無法造成傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_COMBO_MAX",
+					"max_combo": 5
+				}
+			]
+		},
+		{
+			"skill_id": "ES_REQUIRE_ENEMY_ATTACK",
+			"skill_name": "反擊姿態",
+			"description": "敵人必須先攻擊後，否則無法造成傷害（條件可繼承回合）",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_ENEMY_ATTACK"
+				}
+			]
+		},
+		{
+			"skill_id": "ES_STORED_FIRE3_WATER2",
+			"skill_name": "雙元素結界",
+			"description": "儲存火靈珠需達3顆、水靈珠需達2顆（含以上）才可造成傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_STORED_ORB_MIN",
+					"requirements": [
+						{
+							"element": "FIRE",
+							"count": 3
+						},
+						{
+							"element": "WATER",
+							"count": 2
+						}
+					]
+				}
+			]
+		},
+		{
+			"skill_id": "ES_DAMAGE_ONCE_ONLY",
+			"skill_name": "單次傷害",
+			"description": "敵人只會被攻擊一次，第二次以後無法造成傷害",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_ONCE_ONLY"
+				}
+			]
+		},
+		{
+			"skill_id": "ES_STORED_FIRE3_WATER2_EXACT",
+			"skill_name": "精確雙元素結界",
+			"description": "儲存火靈珠需完全3顆、水靈珠需完全2顆才可造成傷害",
+			"effects": [
+				{
+					"effect_type": "REQUIRE_STORED_ORB_EXACT",
+					"requirements": [
+						{
+							"element": "FIRE",
+							"count": 3
+						},
+						{
+							"element": "WATER",
+							"count": 2
+						}
+					]
+				}
+			]
+		}
+	]
+}

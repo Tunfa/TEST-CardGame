@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5m4vkah4l4bx"]
+
+[ext_resource type="Script" uid="uid://dk4a5y3l1qyet" path="res://scripts/ui/StageItem.gd" id="1_stage_item"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stage_normal"]
+bg_color = Color(0.15, 0.15, 0.25, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.4, 0.4, 0.6, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="StageItem" type="PanelContainer"]
+custom_minimum_size = Vector2(350, 150)
+offset_right = 350.0
+offset_bottom = 150.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_stage_normal")
+script = ExtResource("1_stage_item")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StageNameLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "關卡名稱"
+horizontal_alignment = 1
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "關卡描述"
+autowrap_mode = 2
+
+[node name="InfoContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="DifficultyLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.6, 0.2, 1)
+theme_override_font_sizes/font_size = 14
+text = "難度: ★★★"
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.7, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "▶ 可挑戰"
+horizontal_alignment = 2
+
+[node name="LockedOverlay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="BossBadge" type="Label" parent="."]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 18
+text = "👑 BOSS"
+horizontal_alignment = 2
+vertical_alignment = 1

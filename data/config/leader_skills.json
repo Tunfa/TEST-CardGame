@@ -1,0 +1,296 @@
+{
+	"leader_skills": [
+		{
+			"skill_id": "LS_火之力",
+			"skill_name": "火之力",
+			"description": "火屬性攻擊力 1.5 倍",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_MULTIPLIER",
+					"target_element": "FIRE",
+					"multiplier": 1.5
+				}
+			]
+		},
+		{
+			"skill_id": "LS_WATER_HP_1_5X",
+			"skill_name": "水屬性生命提升",
+			"description": "水屬性生命力1.5倍",
+			"effects": [
+				{
+					"effect_type": "HP_MULTIPLIER",
+					"target_element": "WATER",
+					"multiplier": 1.5
+				}
+			]
+		},
+		{
+			"skill_id": "LS_FIRE_FORCE_ORB_5",
+			"skill_name": "火焰先鋒",
+			"description": "前5粒固定出現火屬性靈珠",
+			"effects": [
+				{
+					"effect_type": "FORCE_ORB_SPAWN",
+					"target_element": "HEART",
+					"count": 5
+				}
+			]
+		},
+		{
+			"skill_id": "LS_WOOD_ORB_BOOST",
+			"skill_name": "木靈加持",
+			"description": "木屬性靈珠出現機率額外提升15%",
+			"effects": [
+				{
+					"effect_type": "ORB_SPAWN_RATE_BOOST",
+					"target_element": "WOOD",
+					"boost_percent": 15.0
+				}
+			]
+		},
+		{
+			"skill_id": "LS_FIRE_ORB_COUNT_DAMAGE",
+			"skill_name": "火珠越多傷害越高",
+			"description": "火屬性靈珠越多火屬性傷害越高，最高3倍",
+			"effects": [
+				{
+					"effect_type": "ORB_COUNT_MULTIPLIER",
+					"target_element": "FIRE",
+					"base_multiplier": 1.0,
+					"max_multiplier": 3.0,
+					"orb_per_tier": 3
+				}
+			]
+		},
+		{
+			"skill_id": "LS_TEAM_FIRE_COUNT",
+			"skill_name": "火焰軍團",
+			"description": "隊伍中越多火屬性成員，火屬性傷害越高，最高2.5倍",
+			"effects": [
+				{
+					"effect_type": "TEAM_ELEMENT_MULTIPLIER",
+					"target_element": "FIRE",
+					"base_multiplier": 1.0,
+					"max_multiplier": 2.5,
+					"per_member_boost": 0.3
+				}
+			]
+		},
+		{
+			"skill_id": "LS_DIVERSITY_BOOST",
+			"skill_name": "五行調和",
+			"description": "隊伍中越多不同屬性成員，全隊攻擊力越高，最高2倍",
+			"effects": [
+				{
+					"effect_type": "TEAM_DIVERSITY_MULTIPLIER",
+					"base_multiplier": 1.0,
+					"max_multiplier": 2.0,
+					"per_unique_boost": 0.2
+				}
+			]
+		},
+		{
+			"skill_id": "LS_EXTEND_TIME_2S",
+			"skill_name": "時間延長",
+			"description": "額外延長2秒斬擊時間",
+			"effects": [
+				{
+					"effect_type": "EXTEND_SLASH_TIME",
+					"extend_seconds": 2.0
+				}
+			]
+		},
+		{
+			"skill_id": "LS_END_TURN_FIRE_DAMAGE",
+			"skill_name": "火焰餘燼",
+			"description": "每回合結束對敵方造成500點火屬性傷害",
+			"effects": [
+				{
+					"effect_type": "END_TURN_DAMAGE",
+					"element": "FIRE",
+					"damage": 500
+				}
+			]
+		},
+		{
+			"skill_id": "LS_COMBO_FIRE_WOOD",
+			"skill_name": "火木雙修",
+			"description": "火屬性與木屬性傷害各1.5倍，生命力1.5倍",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_MULTIPLIER",
+					"target_element": "FIRE",
+					"multiplier": 1.5
+				},
+				{
+					"effect_type": "DAMAGE_MULTIPLIER",
+					"target_element": "WOOD",
+					"multiplier": 1.5
+				},
+				{
+					"effect_type": "HP_MULTIPLIER",
+					"target_element": "ALL",
+					"multiplier": 1.5
+				}
+			]
+		},
+		{
+			"skill_id": "LS_ORB_DROP_SLASH",
+			"skill_name": "斬擊回饋",
+			"description": "回合結束掉落3粒心屬性靈珠",
+			"effects": [
+				{
+					"effect_type": "ORB_DROP_END_TURN",
+					"element": "HEART",
+					"count": 3,
+					"drop_timing": "end_turn"
+				}
+			]
+		},
+		{
+			"skill_id": "LS_WATER_CAPACITY_BOOST",
+			"skill_name": "水靈儲備",
+			"description": "水屬性靈珠最高容量額外增加5個",
+			"effects": [
+				{
+					"effect_type": "ORB_CAPACITY_BOOST",
+					"target_element": "WATER",
+					"bonus_capacity": 5
+				}
+			]
+		},
+		{
+			"skill_id": "LS_FIRE_IGNORE_RESISTANCE",
+			"skill_name": "破甲之炎",
+			"description": "火屬性傷害無視屬性克制",
+			"effects": [
+				{
+					"effect_type": "IGNORE_RESISTANCE",
+					"target_element": "FIRE"
+				}
+			]
+		},
+		{
+			"skill_id": "LS_ALL_DAMAGE_BOOST_30",
+			"skill_name": "全能強化",
+			"description": "火屬性所有傷害提升30%（包含主動技能）",
+			"effects": [
+				{
+					"effect_type": "ALL_DAMAGE_BOOST",
+					"target_element": "FIRE",
+					"boost_percent": 30.0
+				}
+			]
+		},
+		{
+			"skill_id": "LS_HEART_DUAL_FIRE",
+			"skill_name": "火心同源",
+			"description": "心屬性靈珠兼具火屬性靈珠50%效果",
+			"effects": [
+				{
+					"effect_type": "ORB_DUAL_EFFECT",
+					"source_element": "HEART",
+					"target_element": "FIRE",
+					"effect_percent": 50.0
+				}
+			]
+		},
+		{
+			"skill_id": "LS_水之力",
+			"skill_name": "水之力",
+			"description": "水屬性傷害1.5倍",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_MULTIPLIER",
+					"target_element": "WATER",
+					"multiplier": 1.5
+				}
+			]
+		},
+		{
+			"skill_id": "LS_木之力",
+			"skill_name": "木之力",
+			"description": "木屬性攻擊力 1.5 倍",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_MULTIPLIER",
+					"target_element": "WOOD",
+					"multiplier": 1.5
+				}
+			]
+		},
+		{
+			"skill_id": "LS_測試技能",
+			"skill_name": "測試技能",
+			"description": "測試技能",
+			"effects": [
+				{
+					"effect_type": "FORCE_ORB_SPAWN",
+					"target_element": "FIRE",
+					"count": 3
+				},
+				{
+					"effect_type": "ORB_DROP_ON_SLASH",
+					"slash_element": "FIRE",
+					"drop_element": "WATER",
+					"count": 5
+				},
+				{
+					"effect_type": "END_TURN_DAMAGE",
+					"element": "FIRE",
+					"damage": 3
+				},
+				{
+					"effect_type": "IGNORE_RESISTANCE",
+					"element": "FIRE"
+				},
+				{
+					"effect_type": "ORB_CAPACITY_BOOST",
+					"target_element": "FIRE",
+					"bonus_capacity": 5
+				},
+				{
+					"effect_type": "COMBO_BOOST",
+					"combo_bonus": 10
+				},
+				{
+					"effect_type": "SLASH_ORB_SPAWN",
+					"slash_element": "FIRE",
+					"spawn_element": "FIRE",
+					"required_count": 3,
+					"spawn_count": 3
+				},
+				{
+					"effect_type": "ORB_DUAL_EFFECT",
+					"source_element": "FIRE",
+					"target_element": "HEART",
+					"effect_percent": 500.0
+				}
+			]
+		},
+		{
+			"skill_id": "LS_土之力",
+			"skill_name": "土之力",
+			"description": "土屬性攻擊力 1.5 倍",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_MULTIPLIER",
+					"target_element": "EARTH",
+					"multiplier": 1.5
+				}
+			]
+		},
+		{
+			"skill_id": "LS_金之力",
+			"skill_name": "金之力",
+			"description": "金屬性攻擊力 1.5 倍",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_MULTIPLIER",
+					"target_element": "METAL",
+					"multiplier": 1.5
+				}
+			]
+		}
+	]
+}

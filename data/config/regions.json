@@ -1,0 +1,160 @@
+{
+	"regions": [
+		{
+			"region_id": "region1",
+			"region_name": "北域 - 厚土崑原",
+			"region_icon": "🗻",
+			"chapters": [
+				{
+					"chapter_id": "R1_C1",
+					"chapter_name": "第一層 - 冰封之路",
+					"chapter_desc": "踏上征服雪山的第一步",
+					"require_previous": false,
+					"is_independent": true,
+					"stages": [
+						"STAGE_001",
+						"STAGE_002",
+						"STAGE_003"
+					],
+					"previous_chapter": ""
+				},
+				{
+					"chapter_id": "R1_C2",
+					"chapter_name": "第二層 - 極寒試煉",
+					"chapter_desc": "寒風凜冽，挑戰升級",
+					"require_previous": true,
+					"previous_chapter": "R1_C1",
+					"is_independent": false,
+					"stages": [
+						"STAGE_004",
+						"STAGE_005"
+					]
+				},
+				{
+					"chapter_id": "R1_C3",
+					"chapter_name": "第三層 - 巔峰之戰",
+					"chapter_desc": "征服厚土崑原的最終考驗",
+					"require_previous": true,
+					"previous_chapter": "R1_C2",
+					"is_independent": false,
+					"stages": [
+						"STAGE_006"
+					]
+				}
+			]
+		},
+		{
+			"region_id": "region2",
+			"region_name": "東域 - 離火烈荒",
+			"region_icon": "🔥",
+			"chapters": [
+				{
+					"chapter_id": "R2_C1",
+					"chapter_name": "第一層 - 沙漠邊緣",
+					"chapter_desc": "進入炙熱的荒漠",
+					"require_previous": false,
+					"is_independent": true,
+					"stages": [
+						"STAGE_007",
+						"STAGE_008"
+					]
+				}
+			]
+		},
+		{
+			"region_id": "region3",
+			"region_name": "南域 - 玄水幽淵",
+			"region_icon": "🌊",
+			"chapters": [
+				{
+					"chapter_id": "R3_C1",
+					"chapter_name": "第一層 - 淺海探索",
+					"chapter_desc": "潛入神秘的深海",
+					"require_previous": false,
+					"is_independent": true,
+					"stages": [
+						"STAGE_009"
+					]
+				}
+			]
+		},
+		{
+			"region_id": "region4",
+			"region_name": "西域 - 蒼木古林",
+			"region_icon": "🌳",
+			"chapters": [
+				{
+					"chapter_id": "R4_C1",
+					"chapter_name": "第一層 - 森林入口",
+					"chapter_desc": "踏入古老的森林",
+					"require_previous": false,
+					"is_independent": true,
+					"stages": [
+						"STAGE_010"
+					]
+				}
+			]
+		},
+		{
+			"region_id": "region5",
+			"region_name": "中域 - 金雷天罡",
+			"region_icon": "⚡",
+			"chapters": [
+				{
+					"chapter_id": "R5_C1",
+					"chapter_name": "第一層 - 雷鳴平原",
+					"chapter_desc": "踏入雷霆籠罩的高原",
+					"require_previous": false,
+					"is_independent": true,
+					"stages": [
+						"STAGE_011"
+					]
+				}
+			]
+		},
+		{
+			"region_id": "vortex",
+			"region_name": "仙魔界海",
+			"region_icon": "🌀",
+			"chapters": [
+				{
+					"chapter_id": "VORTEX_C1",
+					"chapter_name": "第一層 - 界海邊緣",
+					"chapter_desc": "進入仙魔交界的神秘領域",
+					"require_previous": false,
+					"is_independent": true,
+					"stages": [
+						"STAGE_BOSS_001"
+					]
+				}
+			]
+		},
+		{
+			"region_id": "cloud",
+			"region_name": "太初天墟",
+			"region_icon": "☁️",
+			"chapters": [
+				{
+					"chapter_id": "CLOUD_C1",
+					"chapter_name": "活動關卡 - 限時挑戰",
+					"chapter_desc": "特殊活動關卡",
+					"require_previous": false,
+					"is_independent": true,
+					"stages": [
+						"STAGE_EVENT_001"
+					]
+				},
+				{
+					"chapter_id": "CLOUD_C2",
+					"chapter_name": "特殊關卡 - 試煉場",
+					"chapter_desc": "獨立的特殊挑戰",
+					"require_previous": false,
+					"is_independent": true,
+					"stages": [
+						"STAGE_SPECIAL_001"
+					]
+				}
+			]
+		}
+	]
+}

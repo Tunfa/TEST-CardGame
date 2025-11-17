@@ -1,0 +1,432 @@
+[gd_scene load_steps=7 format=3 uid="uid://cynwm8c0wbejo"]
+
+[ext_resource type="PackedScene" uid="uid://dqaocogc8n1ft" path="res://scenes/team/TeamSlot.tscn" id="2_goae7"]
+
+[sub_resource type="GDScript" id="GDScript_0nfhs"]
+script/source = "# TeamSetup.gd
+# 組隊系統控制器
+extends Control
+
+# ==================== 引用 ====================
+@onready var team_header = $HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/HeaderLabel
+@onready var team_container = $HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/TeamContainer
+@onready var start_button = $HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/ButtonContainer/StartBattleButton
+@onready var back_button = $HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/ButtonContainer/BackButton
+@onready var capacity_label = $HBoxContainer/RightPanel/MarginContainer/VBoxContainer/HeaderContainer/CapacityLabel
+@onready var card_grid = $HBoxContainer/RightPanel/MarginContainer/VBoxContainer/ScrollContainer/CardGridContainer
+
+# ==================== 預製體 ====================
+var inventory_slot_scene = preload(\"res://scenes/inventory/InventorySlot.tscn\")
+
+# ==================== 資料 ====================
+var team_slots: Array = []
+var current_team: Array = []
+var leader_index: int = 0
+var inventory_items: Array = []
+
+# ==================== 初始化 ====================
+
+func _ready():
+	print(\"👥 組隊系統載入完成\")
+	
+	# 載入正在編輯的隊伍（如果有）
+	load_editing_team()
+	
+	# 連接按鈕
+	start_button.text = \"保存隊伍\"
+	start_button.pressed.connect(_on_save_team_pressed)
+	back_button.pressed.connect(_on_back_pressed)
+	
+	# 獲取隊伍格子
+	setup_team_slots()
+	
+	# 載入背包資料
+	load_inventory()
+	
+	# 創建背包卡片格子
+	create_inventory_cards()
+	
+	# 更新顯示
+	update_team_display()
+	
+func load_editing_team():
+	\"\"\"載入正在編輯的隊伍\"\"\"
+	if GameManager.current_editing_team_id.is_empty():
+		return
+	
+	var team_data = PlayerDataManager.load_team(GameManager.current_editing_team_id)
+	if not team_data:
+		return
+	
+	print(\"📂 載入隊伍：%s\" % team_data.team_name)
+	
+	# 載入隊伍成員
+	current_team = team_data.get_all_card_ids()
+	
+	# 設定隊長索引
+	leader_index = 0
+
+func _on_save_team_pressed():
+	\"\"\"保存隊伍按鈕\"\"\"
+	if current_team.is_empty():
+		print(\"❌ 隊伍為空！\")
+		show_message(\"隊伍不能為空！\")
+		return
+	
+	# 創建 TeamData
+	var team_data = TeamData.new()
+	team_data.team_id = GameManager.current_editing_team_id
+	team_data.team_name = \"隊伍_%s\" % Time.get_datetime_string_from_system().substr(11, 8)
+	team_data.leader_card_id = current_team[leader_index]
+	
+	# 添加其他隊員
+	for i in range(current_team.size()):
+		if i != leader_index:
+			team_data.member_card_ids.append(current_team[i])
+	
+	# 保存到 PlayerDataManager
+	PlayerDataManager.save_team(team_data.team_id, team_data)
+	PlayerDataManager.save_data()
+	
+	print(\"✅ 隊伍已保存：%s\" % team_data.team_name)
+	show_message(\"隊伍已保存！\")
+	
+	# ✅ 修改：判斷返回位置
+	# 如果有選中的關卡，說明是從關卡選擇進來的，返回關卡選擇
+	if GameManager.selected_stage != null:
+		print(\"📋 返回關卡選擇...\")
+		await get_tree().create_timer(1.0).timeout
+		GameManager.goto_stage_select()
+	else:
+		# 否則返回隊伍列表
+		print(\"📋 返回隊伍列表...\")
+		await get_tree().create_timer(1.0).timeout
+		get_tree().change_scene_to_file(\"res://scenes/team/TeamList.tscn\")
+
+func show_message(text: String):
+	\"\"\"顯示臨時訊息\"\"\"
+	var label = Label.new()
+	label.text = text
+	label.add_theme_font_size_override(\"font_size\", 20)
+	label.add_theme_color_override(\"font_color\", Color(0.3, 1, 0.3))
+	label.position = Vector2(860, 500)
+	add_child(label)
+	
+	# 淡出動畫
+	var tween = create_tween()
+	tween.tween_property(label, \"modulate:a\", 0.0, 1.0)
+	tween.tween_callback(label.queue_free)
+
+# ==================== 設定隊伍格子 ====================
+
+func setup_team_slots():
+	\"\"\"設定隊伍格子\"\"\"
+	team_slots = team_container.get_children()
+	
+	for i in range(team_slots.size()):
+		var slot = team_slots[i]
+		if slot is PanelContainer:
+			slot.setup_slot(i)
+			slot.slot_clicked.connect(_on_team_slot_clicked)
+			slot.remove_clicked.connect(_on_remove_from_team)
+			slot.set_leader_clicked.connect(_on_set_leader)
+
+# ==================== 載入背包 ====================
+
+func load_inventory():
+	\"\"\"載入背包資料\"\"\"
+	inventory_items = PlayerDataManager.get_inventory()
+	capacity_label.text = \"%d/%d\" % [inventory_items.size(), PlayerDataManager.player_data.bag_capacity]
+
+func create_inventory_cards():
+	\"\"\"創建背包卡片格子\"\"\"
+	# 清空舊格子
+	for child in card_grid.get_children():
+		child.queue_free()
+	
+	# 創建卡片格子
+	for card_id in inventory_items:
+		# 檢查是否已在隊伍中
+		if card_id in current_team:
+			continue
+		
+		var slot = inventory_slot_scene.instantiate()
+		card_grid.add_child(slot)
+		slot.setup(card_id)
+		slot.slot_clicked.connect(_on_inventory_card_clicked)
+
+# ==================== 隊伍操作 ====================
+
+func add_to_team(card_id: String) -> bool:
+	\"\"\"添加卡片到隊伍\"\"\"
+	if current_team.size() >= Constants.MAX_TEAM_SIZE:
+		print(\"❌ 隊伍已滿！\")
+		show_message(\"隊伍已滿！\")
+		return false
+	
+	if card_id in current_team:
+		print(\"❌ 該卡片已在隊伍中！\")
+		return false
+	
+	current_team.append(card_id)
+	print(\"✅ 添加 %s 到隊伍\" % card_id)
+	
+	update_team_display()
+	refresh_inventory_cards()
+	
+	return true
+
+func remove_from_team(slot_index: int):
+	\"\"\"從隊伍移除卡片\"\"\"
+	if slot_index < 0 or slot_index >= current_team.size():
+		return
+	
+	var card_id = current_team[slot_index]
+	current_team.remove_at(slot_index)
+	print(\"✅ 移除 %s 從隊伍\" % card_id)
+	
+	if slot_index == leader_index:
+		leader_index = 0
+	elif slot_index < leader_index:
+		leader_index -= 1
+	
+	update_team_display()
+	refresh_inventory_cards()
+
+func set_leader(slot_index: int):
+	\"\"\"設定隊長\"\"\"
+	if slot_index < 0 or slot_index >= current_team.size():
+		return
+	
+	leader_index = slot_index
+	print(\"✅ 設定隊長：索引 %d\" % leader_index)
+	
+	update_team_display()
+
+# ==================== 更新顯示 ====================
+
+func update_team_display():
+	\"\"\"更新隊伍顯示\"\"\"
+	team_header.text = \"當前隊伍 (%d/%d)\" % [current_team.size(), Constants.MAX_TEAM_SIZE]
+	
+	for i in range(team_slots.size()):
+		var slot = team_slots[i]
+		
+		if i < current_team.size():
+			slot.set_card(current_team[i])
+			slot.set_as_leader(i == leader_index)
+		else:
+			slot.show_empty()
+	
+	start_button.disabled = current_team.is_empty()
+
+func refresh_inventory_cards():
+	\"\"\"刷新背包卡片顯示\"\"\"
+	create_inventory_cards()
+
+# ==================== 按鈕回調 ====================
+
+func _on_team_slot_clicked(slot_index: int):
+	\"\"\"隊伍格子被點擊\"\"\"
+	print(\"點擊隊伍格子：%d\" % slot_index)
+
+func _on_remove_from_team(slot_index: int):
+	\"\"\"移除按鈕\"\"\"
+	remove_from_team(slot_index)
+
+func _on_set_leader(slot_index: int):
+	\"\"\"設為隊長（右鍵）\"\"\"
+	set_leader(slot_index)
+
+func _on_inventory_card_clicked(card_id: String, _slot_position: Vector2):
+	\"\"\"背包卡片被點擊\"\"\"
+	add_to_team(card_id)
+
+func _on_back_pressed():
+	\"\"\"返回按鈕\"\"\"
+	print(\"← 返回\")
+	
+	# ✅ 判斷返回位置
+	if GameManager.selected_stage != null:
+		GameManager.goto_stage_select()
+	else:
+		GameManager.goto_main_menu()
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6wx5"]
+bg_color = Color(0.12, 0.12, 0.18, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.4, 0.6, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xo4t"]
+bg_color = Color(0.2, 0.8, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_an43v"]
+bg_color = Color(0.5, 0.5, 0.5, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkam6"]
+bg_color = Color(0.12, 0.12, 0.18, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="TeamSetup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_0nfhs")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.05, 0.1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -1.0
+offset_right = -2.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00175, 0.910596)
+theme_override_constants/separation = 15
+
+[node name="LeftPanel" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t6wx5")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/LeftPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 24
+text = "當前隊伍 (0/5)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TeamContainer" type="VBoxContainer" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TeamSlot1" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/TeamContainer" instance=ExtResource("2_goae7")]
+layout_mode = 2
+
+[node name="TeamSlot2" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/TeamContainer" instance=ExtResource("2_goae7")]
+layout_mode = 2
+
+[node name="TeamSlot3" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/TeamContainer" instance=ExtResource("2_goae7")]
+layout_mode = 2
+
+[node name="TeamSlot4" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/TeamContainer" instance=ExtResource("2_goae7")]
+layout_mode = 2
+
+[node name="TeamSlot5" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/TeamContainer" instance=ExtResource("2_goae7")]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StartBattleButton" type="Button" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2xo4t")
+disabled = true
+text = "開始戰鬥"
+
+[node name="BackButton" type="Button" parent="HBoxContainer/LeftPanel/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_an43v")
+text = "返回"
+
+[node name="RightPanel" type="PanelContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pkam6")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/RightPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/RightPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="HBoxContainer/RightPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="HBoxContainer/RightPanel/MarginContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+
+[node name="CapacityLabel" type="Label" parent="HBoxContainer/RightPanel/MarginContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/RightPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/RightPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardGridContainer" type="GridContainer" parent="HBoxContainer/RightPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 4

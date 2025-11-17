@@ -1,0 +1,168 @@
+{
+	"stages": [
+		{
+			"stage_id": "STAGE_001",
+			"stage_name": "冰霜入口",
+			"description": "新手關卡，遇見了幾隻史萊姆",
+			"difficulty": 1,
+			"rewards": {
+				"gold": 50,
+				"exp": 10,
+				"card_drops": []
+			},
+			"unlock_requirements": {
+				"required_stages": []
+			},
+			"waves": [
+				{
+					"wave_number": 1,
+					"enemies": [
+						{
+							"enemy_id": "E001",
+							"count": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"stage_id": "STAGE_002",
+			"stage_name": "哥布林營地",
+			"description": "哥布林的聚集地，小心它們的攻擊！",
+			"difficulty": 2,
+			"rewards": {
+				"gold": 80,
+				"exp": 20,
+				"card_drops": []
+			},
+			"unlock_requirements": {
+				"required_stages": []
+			},
+			"waves": [
+				{
+					"wave_number": 1,
+					"enemies": [
+						{
+							"enemy_id": "E001",
+							"count": 2
+						}
+					]
+				},
+				{
+					"wave_number": 2,
+					"enemies": [
+						{
+							"enemy_id": "E002",
+							"count": 1
+						}
+					]
+				}
+			]
+		},
+		{
+			"stage_id": "1-3",
+			"stage_name": "墓地",
+			"description": "陰森的墓地，骷髏戰士在此徘徊",
+			"difficulty": 3,
+			"rewards": {
+				"gold": 120,
+				"exp": 35,
+				"card_drops": [
+					{
+						"card_id": "003",
+						"drop_rate": 0.2
+					}
+				]
+			},
+			"unlock_requirements": {
+				"required_stages": [
+					"1-2"
+				]
+			},
+			"waves": [
+				{
+					"wave_number": 1,
+					"enemies": [
+						{
+							"enemy_id": "E002",
+							"count": 1
+						},
+						{
+							"enemy_id": "E003",
+							"count": 2
+						}
+					]
+				}
+			]
+		},
+		{
+			"stage_id": "1-4",
+			"stage_name": "暗影塔",
+			"description": "暗影法師守護的塔樓，準備好面對強大的魔法攻擊！",
+			"difficulty": 4,
+			"rewards": {
+				"gold": 200,
+				"exp": 50,
+				"card_drops": [
+					{
+						"card_id": "005",
+						"drop_rate": 0.1
+					}
+				]
+			},
+			"unlock_requirements": {
+				"required_stages": [
+					"1-3"
+				]
+			},
+			"waves": [
+				{
+					"wave_number": 1,
+					"enemies": [
+						{
+							"enemy_id": "E003",
+							"count": 1
+						},
+						{
+							"enemy_id": "E004",
+							"count": 2
+						}
+					]
+				}
+			]
+		},
+		{
+			"stage_id": "BOSS_1",
+			"stage_name": "魔王降臨",
+			"description": "最終BOSS戰！擊敗魔王，拯救世界！",
+			"difficulty": 10,
+			"is_boss_stage": true,
+			"rewards": {
+				"gold": 1000,
+				"exp": 200,
+				"card_drops": [
+					{
+						"card_id": "005",
+						"drop_rate": 0.5
+					}
+				]
+			},
+			"unlock_requirements": {
+				"required_stages": [
+					"1-4"
+				]
+			},
+			"waves": [
+				{
+					"wave_number": 1,
+					"enemies": [
+						{
+							"enemy_id": "BOSS_001",
+							"count": 1
+						}
+					]
+				}
+			]
+		}
+	]
+}

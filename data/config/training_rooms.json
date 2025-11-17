@@ -1,0 +1,106 @@
+{
+	"training_rooms": [
+		{
+			"room_id": "TR_001",
+			"room_name": "基本訓練室",
+			"room_desc": "適合新手的基礎訓練場所",
+			"room_icon": "📚",
+			"training_time": 30,
+			"exp_reward": 300,
+			"max_teams": 1,
+			"unlock_conditions": {
+				"type": "default",
+				"cost_gold": 0,
+				"cost_diamond": 0,
+				"required_stage": "",
+				"required_player_level": 1
+			},
+			"is_unlocked_by_default": true
+		},
+		{
+			"room_id": "TR_002",
+			"room_name": "中級訓練室",
+			"room_desc": "提供更多經驗的訓練場所",
+			"room_icon": "⚔️",
+			"training_time": 60,
+			"exp_reward": 800,
+			"max_teams": 2,
+			"unlock_conditions": {
+				"type": "gold",
+				"cost_gold": 10,
+				"cost_diamond": 0,
+				"required_stage": "",
+				"required_player_level": 1
+			},
+			"is_unlocked_by_default": false
+		},
+		{
+			"room_id": "TR_003",
+			"room_name": "高級訓練室",
+			"room_desc": "高效率的訓練場所",
+			"room_icon": "🏆",
+			"training_time": 120,
+			"exp_reward": 2000,
+			"max_teams": 3,
+			"unlock_conditions": {
+				"type": "gold",
+				"cost_gold": 15000,
+				"cost_diamond": 0,
+				"required_stage": "",
+				"required_player_level": 1
+			},
+			"is_unlocked_by_default": false
+		},
+		{
+			"room_id": "TR_004",
+			"room_name": "特訓場",
+			"room_desc": "需要通過特定關卡才能解鎖",
+			"room_icon": "💎",
+			"training_time": 180,
+			"exp_reward": 3500,
+			"max_teams": 5,
+			"unlock_conditions": {
+				"type": "stage",
+				"cost_gold": 0,
+				"cost_diamond": 0,
+				"required_stage": "region1_chapter1_stage5",
+				"required_player_level": 1
+			},
+			"is_unlocked_by_default": false
+		},
+		{
+			"room_id": "TR_005",
+			"room_name": "鑽石訓練室",
+			"room_desc": "使用鑽石解鎖的頂級訓練場",
+			"room_icon": "✨",
+			"training_time": 300,
+			"exp_reward": 6000,
+			"max_teams": 5,
+			"unlock_conditions": {
+				"type": "diamond",
+				"cost_gold": 0,
+				"cost_diamond": 100,
+				"required_stage": "",
+				"required_player_level": 1
+			},
+			"is_unlocked_by_default": false
+		},
+		{
+			"room_id": "TR_006",
+			"room_name": "極速訓練室",
+			"room_desc": "快速獲得少量經驗",
+			"room_icon": "⚡",
+			"training_time": 10,
+			"exp_reward": 100,
+			"max_teams": 1,
+			"unlock_conditions": {
+				"type": "gold",
+				"cost_gold": 3000,
+				"cost_diamond": 0,
+				"required_stage": "",
+				"required_player_level": 1
+			},
+			"is_unlocked_by_default": false
+		}
+	]
+}

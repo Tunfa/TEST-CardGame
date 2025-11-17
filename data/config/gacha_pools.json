@@ -1,0 +1,62 @@
+{
+  "pools": [
+	{
+	  "id": "standard",
+	  "name": "主角卡池",
+	  "description": "包含所有主角系列卡片的常駐卡池",
+	  "icon_color": "#4A90E2",
+	  "showcase_cards": ["C001", "C002", "C003"],
+	  "legendary_rate": 0.01,
+	  "epic_rate": 0.05,
+	  "rare_rate": 0.20,
+	  "pity_threshold": 90,
+	  "single_pull_cost": 1,
+	  "ten_pull_cost": 10,
+	  "currency": "gem",
+	  "card_pool": {
+		"rare": ["C001", "C002", "C003", "C004", "C005"]
+	  }
+	},
+	{
+	  "id": "limited",
+	  "name": "限定卡池",
+	  "description": "限時限定卡池，包含特殊限定卡片",
+	  "icon_color": "#E94B3C",
+	  "showcase_cards": ["C016", "C017", "C019"],
+	  "legendary_rate": 0.02,
+	  "epic_rate": 0.08,
+	  "rare_rate": 0.25,
+	  "pity_threshold": 80,
+	  "single_pull_cost": 2,
+	  "ten_pull_cost": 18,
+	  "currency": "gem",
+	  "card_pool": {
+		"legendary": ["C001", "C016"],
+		"epic": ["C003", "C017", "C018"],
+		"rare": ["C006", "C019", "C020"],
+		"common": ["C010", "C021", "C022"]
+	  }
+	},
+	{
+	  "id": "beginner",
+	  "name": "新手卡池",
+	  "description": "新手專屬卡池，保底優惠",
+	  "icon_color": "#6BCF7E",
+	  "showcase_cards": ["C001", "C003", "C006"],
+	  "legendary_rate": 0.05,
+	  "epic_rate": 0.15,
+	  "rare_rate": 0.30,
+	  "pity_threshold": 50,
+	  "single_pull_cost": 1,
+	  "ten_pull_cost": 8,
+	  "currency": "gem",
+	  "max_pulls": 50,
+	  "card_pool": {
+		"legendary": ["C001"],
+		"epic": ["C003", "C004"],
+		"rare": ["C006", "C007", "C008"],
+		"common": ["C010", "C011", "C012"]
+	  }
+	}
+  ]
+}

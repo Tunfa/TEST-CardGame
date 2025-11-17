@@ -1,0 +1,180 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8vh5n3qxqr7w"]
+
+[ext_resource type="Script" uid="uid://h7ebyhg071sj" path="res://scripts/ui/EvolutionHall.gd" id="1_evolution"]
+[ext_resource type="PackedScene" uid="uid://cltoh5fc8n4ob" path="res://scenes/inventory/CardDetailPanel.tscn" id="2_detail_panel"]
+
+[node name="EvolutionHall" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_evolution")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0293202, 0.00843433, 0.04906, 0.94902)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 26
+text = "✨ 升仙台 - 卡片進化系統"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/TopBar"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🔙 返回"
+
+[node name="MainContent" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="LeftPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContent"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MainContent/LeftPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "📋 我的卡片"
+horizontal_alignment = 1
+
+[node name="CardListPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MainContent/LeftPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MainContent/LeftPanel/CardListPanel"]
+layout_mode = 2
+
+[node name="CardList" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContent/LeftPanel/CardListPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="RightPanel" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContent"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MainContent/RightPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "⚗️ 進化區域"
+horizontal_alignment = 1
+
+[node name="InfoLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MainContent/RightPanel"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "請選擇要進化的卡片"
+fit_content = true
+
+[node name="PreviewContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContent/RightPanel"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="PreviewLabel" type="Label" parent="MarginContainer/VBoxContainer/MainContent/RightPanel/PreviewContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🔮 進化預覽"
+horizontal_alignment = 1
+
+[node name="PreviewCardSlotContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/MainContent/RightPanel/PreviewContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="EvolutionArea" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainContent/RightPanel"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TargetLabel" type="Label" parent="MarginContainer/VBoxContainer/MainContent/RightPanel/EvolutionArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🎯 進化目標"
+horizontal_alignment = 1
+
+[node name="TargetCardSlotContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/MainContent/RightPanel/EvolutionArea"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MaterialLabel" type="Label" parent="MarginContainer/VBoxContainer/MainContent/RightPanel/EvolutionArea"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🧪 進化素材"
+horizontal_alignment = 1
+
+[node name="MaterialSlotsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MainContent/RightPanel/EvolutionArea"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BottomBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="CostLabel" type="Label" parent="MarginContainer/VBoxContainer/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 18
+text = "進化費用：1000 金幣"
+
+[node name="AutoFillButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar"]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "🤖 自動放入素材"
+
+[node name="EvolveButton" type="Button" parent="MarginContainer/VBoxContainer/BottomBar"]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.5, 0.5, 0.5, 1)
+theme_override_colors/font_color = Color(1, 0.85, 0, 1)
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "✨ 進化"
+
+[node name="CardDetailPanel" parent="." instance=ExtResource("2_detail_panel")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1

@@ -1,0 +1,97 @@
+{
+	"enemies": [
+		{
+			"enemy_id": "E001",
+			"enemy_name": "史萊姆",
+			"element": "WATER",
+			"sprite_path": "res://resources/ui/icons/096i.webp",
+			"max_hp": 15,
+			"base_atk": 30,
+			"attack_cd": 1,
+			"passive_skill_ids": [],
+			"attack_skill_ids": [],
+			"card_id": "002",
+			"card_name": "茉莉",
+			"card_image_path": "res://resources/ui/icons/001i.webp",
+			"rarity": "COMMON",
+			"card_race": "HUMAN",
+			"base_hp": 250,
+			"base_recovery": 50,
+			"max_level": 50,
+			"max_exp": 500,
+			"rank": 1,
+			"evoland": [
+				"高級水術士莫莉 (C002)"
+			]
+		},
+		{
+			"enemy_id": "E002",
+			"enemy_name": "哥布林",
+			"element": "METAL",
+			"sprite_path": "res://assets/enemies/goblin.png",
+			"max_hp": 25,
+			"base_atk": 5,
+			"attack_cd": 1,
+			"passive_skill_ids": [
+				"ES_DAMAGE_REDUCTION_50"
+			],
+			"attack_skill_ids": [
+				""
+			]
+		},
+		{
+			"enemy_id": "E003",
+			"enemy_name": "骷髏戰士",
+			"element": "EARTH",
+			"sprite_path": "res://assets/enemies/skeleton.png",
+			"max_hp": 30,
+			"base_atk": 7,
+			"attack_cd": 2,
+			"passive_skill_ids": [
+				"ES_REQUIRE_COMBO_10",
+				"bone_armor"
+			],
+			"attack_skill_ids": [
+				"bone_strike"
+			]
+		},
+		{
+			"enemy_id": "E004",
+			"enemy_name": "暗影法師",
+			"element": "FIRE",
+			"sprite_path": "res://assets/enemies/dark_mage.png",
+			"max_hp": 20,
+			"base_atk": 10,
+			"attack_cd": 2,
+			"passive_skill_ids": [
+				"ES_SEAL_SKILL_3",
+				"ES_REDUCE_TIME_2S"
+			],
+			"attack_skill_ids": [
+				"shadow_bolt",
+				"curse"
+			]
+		},
+		{
+			"enemy_id": "BOSS_001",
+			"enemy_name": "魔王",
+			"element": "FIRE",
+			"sprite_path": "res://assets/enemies/demon_lord.png",
+			"max_hp": 100,
+			"base_atk": 15,
+			"attack_cd": 1,
+			"passive_skill_ids": [
+				"ES_REVIVE_ONCE",
+				"ES_DEATH_DAMAGE_1000",
+				"ES_COMBO_SHIELD_DAMAGE_REDUCTION",
+				"demon_aura",
+				"rage_mode"
+			],
+			"attack_skill_ids": [
+				"demon_slash",
+				"hellfire",
+				"summon_minions"
+			]
+		}
+	]
+}

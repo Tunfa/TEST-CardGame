@@ -1,0 +1,134 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6akyp4f5c6rf"]
+
+[ext_resource type="Script" uid="uid://cjx3wdpr2y6ll" path="res://scripts/ui/TeamRow.gd" id="1_abcde"]
+[ext_resource type="PackedScene" uid="uid://dqaocogc8n1ft" path="res://scenes/team/TeamSlot.tscn" id="2_fghij"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12345"]
+bg_color = Color(0.15, 0.15, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 0.4, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67890"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leader_skill"]
+bg_color = Color(0.18, 0.18, 0.25, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.9, 1, 0.5)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="TeamRow" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 220)
+theme_override_styles/panel = SubResource("StyleBoxFlat_12345")
+script = ExtResource("1_abcde")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ButtonVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TeamNameLabel" type="Label" parent="MarginContainer/HBoxContainer/ButtonVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "隊伍 1"
+horizontal_alignment = 1
+
+[node name="EditButton" type="Button" parent="MarginContainer/HBoxContainer/ButtonVBox"]
+layout_mode = 2
+text = "編輯隊伍"
+
+[node name="ActionButton" type="Button" parent="MarginContainer/HBoxContainer/ButtonVBox"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_67890")
+text = "清空隊伍"
+
+[node name="VSeperator" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="LeaderSkillPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_leader_skill")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeaderSkillPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeaderSkillPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/LeaderSkillPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "───── 隊長技能 ─────"
+horizontal_alignment = 1
+
+[node name="DescScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer/LeaderSkillPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DescLabel" type="Label" parent="MarginContainer/HBoxContainer/LeaderSkillPanel/MarginContainer/VBoxContainer/DescScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "隊長技能描述"
+autowrap_mode = 3
+
+[node name="VSeperator2" type="VSeparator" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TeamSlotsContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="TeamSlot1" parent="MarginContainer/HBoxContainer/TeamSlotsContainer" instance=ExtResource("2_fghij")]
+layout_mode = 2
+
+[node name="TeamSlot2" parent="MarginContainer/HBoxContainer/TeamSlotsContainer" instance=ExtResource("2_fghij")]
+layout_mode = 2
+
+[node name="TeamSlot3" parent="MarginContainer/HBoxContainer/TeamSlotsContainer" instance=ExtResource("2_fghij")]
+layout_mode = 2
+
+[node name="TeamSlot4" parent="MarginContainer/HBoxContainer/TeamSlotsContainer" instance=ExtResource("2_fghij")]
+layout_mode = 2
+
+[node name="TeamSlot5" parent="MarginContainer/HBoxContainer/TeamSlotsContainer" instance=ExtResource("2_fghij")]
+layout_mode = 2

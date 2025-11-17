@@ -1,0 +1,31 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="TheCardGame"
+run/main_scene="uid://c8pxq7dy8okh8"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://scripts/autoload/GameManager.gd"
+PlayerDataManager="*res://scripts/autoload/PlayerDataManager.gd"
+SkillRegistry="*res://scripts/autoload/SkillRegistry.gd"
+DataManager="*res://scripts/autoload/DataManager.gd"
+AudioManager="*res://scripts/autoload/AudioManager.gd"
+VFXManager="*res://scripts/autoload/VFXManager.gd"
+TaskManager="*res://scripts/autoload/TaskManager.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080

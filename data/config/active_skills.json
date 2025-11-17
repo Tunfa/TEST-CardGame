@@ -1,0 +1,312 @@
+{
+	"$schema": "主動技能配置 - 玩家卡片可發動的技能",
+	"active_skills": [
+		{
+			"skill_id": "AS_DAMAGE_BOOST_1TURN",
+			"skill_name": "狂暴",
+			"description": "1回合內全隊傷害提升2倍",
+			"skill_cost": 10,
+			"duration": 1,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_MULTIPLIER",
+					"multiplier": 2.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_HEART_ORB_DROP_2TURN",
+			"skill_name": "治療祝福",
+			"description": "2回合內每回合結束掉落3粒心靈珠",
+			"skill_cost": 8,
+			"duration": 2,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "ORB_DROP_END_TURN",
+					"element": "HEART",
+					"count": 3,
+					"drop_timing": "end_turn"
+				}
+			]
+		},
+		{
+			"skill_id": "AS_IGNORE_COMBO_REQUIREMENT",
+			"skill_name": "破防",
+			"description": "1回合內無視敵人連擊要求",
+			"skill_cost": 12,
+			"duration": 1,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "IGNORE_ENEMY_SKILL",
+					"skill_type": "REQUIRE_COMBO"
+				}
+			]
+		},
+		{
+			"skill_id": "AS_EXTEND_SLASH_TIME_3S",
+			"skill_name": "時間延長",
+			"description": "斬擊時間延長3秒（瞬發）",
+			"skill_cost": 5,
+			"duration": 0,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "EXTEND_SLASH_TIME",
+					"extend_seconds": 3.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_FIRE_DAMAGE_BOOST_2TURN",
+			"skill_name": "烈焰強化",
+			"description": "2回合內火屬性傷害提升3倍",
+			"skill_cost": 15,
+			"duration": 2,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "ELEMENT_DAMAGE_BOOST",
+					"element": "FIRE",
+					"multiplier": 3.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_FORCE_FIRE_ORB_SPAWN",
+			"skill_name": "火焰召喚",
+			"description": "1回合內前3粒固定出現火靈珠",
+			"skill_cost": 7,
+			"duration": 1,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "FORCE_ORB_SPAWN",
+					"element": "FIRE",
+					"count": 3
+				}
+			]
+		},
+		{
+			"skill_id": "AS_IGNORE_RESISTANCE",
+			"skill_name": "屬性穿透",
+			"description": "1回合內無視屬性克制",
+			"skill_cost": 10,
+			"duration": 1,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "IGNORE_RESISTANCE"
+				}
+			]
+		},
+		{
+			"skill_id": "AS_DOUBLE_HEAL",
+			"skill_name": "回復增幅",
+			"description": "1回合內治療量提升2倍",
+			"skill_cost": 8,
+			"duration": 1,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "HEAL_MULTIPLIER",
+					"multiplier": 2.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_SHIELD_1TURN",
+			"skill_name": "防護壁壘",
+			"description": "1回合內減少50%受到的傷害",
+			"skill_cost": 10,
+			"duration": 1,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "DAMAGE_REDUCTION",
+					"reduction_percent": 50.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_MULTI_ATTACK_2TURN",
+			"skill_name": "連擊強化",
+			"description": "2回合內連擊數額外+5",
+			"skill_cost": 12,
+			"duration": 2,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "COMBO_BOOST",
+					"combo_bonus": 5
+				}
+			]
+		},
+		{
+			"skill_id": "AS_測試用",
+			"skill_name": "新技能",
+			"description": "新技能描述",
+			"skill_cost": 1,
+			"duration": 2,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "END_TURN_DAMAGE",
+					"element": "FIRE",
+					"damage": 3
+				}
+			]
+		},
+		{
+			"skill_id": "AS_火焰強化",
+			"skill_name": "火焰覺醒",
+			"description": "2回合內全隊火屬性卡片基礎攻擊力提升50%",
+			"skill_cost": 1,
+			"duration": 2,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "BASE_STAT_BOOST",
+					"target_scope": "ALL_ALLIES",
+					"target_element": "FIRE",
+					"target_stat": "base_atk",
+					"boost_percent": 50.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_海洋強化",
+			"skill_name": "海洋強化",
+			"description": "2回合內全隊水屬性卡片基礎攻擊力提升50%",
+			"skill_cost": 5,
+			"duration": 2,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "BASE_STAT_BOOST",
+					"target_scope": "ALL_ALLIES",
+					"target_element": "WATER",
+					"target_stat": "base_atk",
+					"boost_percent": 50.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_森林強化",
+			"skill_name": "森林強化",
+			"description": "2回合內全隊木屬性卡片基礎攻擊力提升50%",
+			"skill_cost": 5,
+			"duration": 2,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "BASE_STAT_BOOST",
+					"target_scope": "ALL_ALLIES",
+					"target_element": "WOOD",
+					"target_stat": "base_atk",
+					"boost_percent": 50.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_庚金強化",
+			"skill_name": "庚金強化",
+			"description": "2回合內全隊金屬性卡片基礎攻擊力提升50%",
+			"skill_cost": 5,
+			"duration": 2,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "BASE_STAT_BOOST",
+					"target_scope": "ALL_ALLIES",
+					"target_element": "METAL",
+					"target_stat": "base_atk",
+					"boost_percent": 50.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_大地強化",
+			"skill_name": "大地強化",
+			"description": "2回合內全隊土屬性卡片基礎攻擊力提升50%",
+			"skill_cost": 5,
+			"duration": 2,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "BASE_STAT_BOOST",
+					"target_scope": "ALL_ALLIES",
+					"target_element": "EARTH",
+					"target_stat": "base_atk",
+					"boost_percent": 50.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_SELF_ATK_BOOST_3TURN",
+			"skill_name": "自我強化",
+			"description": "3回合內自身基礎攻擊力提升100%",
+			"skill_cost": 8,
+			"duration": 3,
+			"target_type": "SELF",
+			"effects": [
+				{
+					"effect_type": "BASE_STAT_BOOST",
+					"target_scope": "SELF",
+					"target_stat": "base_atk",
+					"boost_percent": 100.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_SPECIFIC_CARD_BOOST",
+			"skill_name": "指定強化",
+			"description": "2回合內茉莉的基礎攻擊力提升200%",
+			"skill_cost": 12,
+			"duration": 2,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "BASE_STAT_BOOST",
+					"target_scope": "ALL_ALLIES",
+					"target_card_ids": ["ID002"],
+					"target_stat": "base_atk",
+					"boost_percent": 200.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_FINAL_DAMAGE_BOOST_FIRE",
+			"skill_name": "火焰爆發",
+			"description": "2回合內火屬性最終傷害提升3倍",
+			"skill_cost": 15,
+			"duration": 2,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "FINAL_DAMAGE_MULTIPLIER",
+					"target_scope": "ALL_ALLIES",
+					"target_element": "FIRE",
+					"multiplier": 3.0
+				}
+			]
+		},
+		{
+			"skill_id": "AS_IGNORE_SPECIFIC_ENEMY_SKILL",
+			"skill_name": "破盾",
+			"description": "2回合內無視敵人的複合防禦技能",
+			"skill_cost": 12,
+			"duration": 2,
+			"target_type": "ALL_ALLIES",
+			"effects": [
+				{
+					"effect_type": "IGNORE_ENEMY_SKILL",
+					"target_scope": "ALL_ALLIES",
+					"target_skill_id": "ES_COMBO_SHIELD_DAMAGE_REDUCTION"
+				}
+			]
+		}
+	]
+}

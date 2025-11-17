@@ -1,0 +1,76 @@
+{
+  "dialogs": [
+	{
+	  "dialog_id": "welcome_001",
+	  "speaker": "???",
+	  "speaker_avatar": "mystery",
+	  "content": "歡迎來到這個修仙世界...\n我是引導者，將帶領你踏上修仙之路。",
+	  "choices": [
+		{
+		  "text": "繼續",
+		  "action": "next"
+		}
+	  ]
+	},
+	{
+	  "dialog_id": "choose_starter",
+	  "speaker": "???",
+	  "speaker_avatar": "mystery",
+	  "content": "在開始修行之前，你需要選擇一位道侶作為你的起始夥伴。\n\n請從以下五位修士中選擇一位：",
+	  "choices": [
+		{
+		  "text": "查看選擇",
+		  "action": "show_card_selection"
+		}
+	  ]
+	},
+	{
+	  "dialog_id": "starter_selected",
+	  "speaker": "???",
+	  "speaker_avatar": "mystery",
+	  "content": "很好的選擇！{card_name} 將會是你最忠實的夥伴。\n\n現在，讓我教你如何提升修為...",
+	  "choices": [
+		{
+		  "text": "開始修煉",
+		  "action": "next"
+		}
+	  ]
+	},
+	{
+	  "dialog_id": "training_guide_001",
+	  "speaker": "???",
+	  "speaker_avatar": "mystery",
+	  "content": "要提升修為，你需要前往「斷界修途」進行訓練。\n\n那裡有各種訓練室，可以讓你的道侶快速成長。",
+	  "choices": [
+		{
+		  "text": "前往斷界修途",
+		  "action": "highlight_training_area"
+		}
+	  ]
+	},
+	{
+	  "dialog_id": "training_guide_002",
+	  "speaker": "???",
+	  "speaker_avatar": "mystery",
+	  "content": "選擇「基本訓練室」，將你的道侶放入訓練隊伍中。\n\n記住，訓練可以大幅提升卡片的等級和經驗值！",
+	  "choices": [
+		{
+		  "text": "了解",
+		  "action": "close"
+		}
+	  ]
+	},
+	{
+	  "dialog_id": "training_complete",
+	  "speaker": "???",
+	  "speaker_avatar": "mystery",
+	  "content": "恭喜你！你已經掌握了基本的修煉之道。\n\n作為獎勵，這裡有 1000 金幣送給你！",
+	  "choices": [
+		{
+		  "text": "領取獎勵",
+		  "action": "claim_reward"
+		}
+	  ]
+	}
+  ]
+}

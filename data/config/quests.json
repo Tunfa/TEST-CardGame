@@ -1,0 +1,175 @@
+{
+  "quests": [
+	{
+	  "quest_id": "tutorial_001",
+	  "quest_name": "初入修仙界",
+	  "quest_desc": "選擇你的起始道侶",
+	  "quest_type": "tutorial",
+	  "is_mandatory": true,
+	  "auto_start": true,
+	  "steps": [
+		{
+		  "step_id": "step_001",
+		  "step_desc": "觀看開場對話",
+		  "dialog_id": "welcome_001",
+		  "conditions": {
+			"type": "dialog_completed",
+			"dialog_id": "welcome_001"
+		  },
+		  "allowed_actions": {
+			"type": "dialog_only"
+		  }
+		},
+		{
+		  "step_id": "step_002",
+		  "step_desc": "選擇起始卡片",
+		  "dialog_id": "choose_starter",
+		  "conditions": {
+			"type": "card_selected",
+			"valid_cards": ["001", "002", "003", "004", "005"],
+			"min_count": 1
+		  },
+		  "allowed_actions": {
+			"type": "dialog_only"
+		  }
+		},
+		{
+		  "step_id": "step_003",
+		  "step_desc": "確認選擇",
+		  "dialog_id": "starter_selected",
+		  "conditions": {
+			"type": "dialog_completed",
+			"dialog_id": "starter_selected"
+		  },
+		  "allowed_actions": {
+			"type": "dialog_only"
+		  }
+		}
+	  ],
+	  "rewards": {
+		"gold": 0,
+		"diamond": 0,
+		"cards": []
+	  },
+	  "next_quest": "tutorial_002"
+	},
+	{
+	  "quest_id": "tutorial_002",
+	  "quest_name": "修煉之道",
+	  "quest_desc": "學習如何訓練卡片",
+	  "quest_type": "tutorial",
+	  "is_mandatory": true,
+	  "auto_start": true,
+	  "unlock_conditions": {
+		"type": "quest_completed",
+		"required_quests": ["tutorial_001"]
+	  },
+	  "steps": [
+		{
+		  "step_id": "step_001",
+		  "step_desc": "聽取訓練指導",
+		  "dialog_id": "training_guide_001",
+		  "conditions": {
+			"type": "dialog_completed",
+			"dialog_id": "training_guide_001"
+		  },
+		  "actions": [
+			{
+			  "type": "highlight_ui",
+			  "target": "training_area",
+			  "highlight_type": "red_flash"
+			}
+		  ],
+		  "allowed_actions": {
+			"type": "dialog_only"
+		  }
+		},
+		{
+		  "step_id": "step_002",
+		  "step_desc": "前往斷界修途",
+		  "conditions": {
+			"type": "scene_entered",
+			"scene_name": "training_select"
+		  },
+		  "allowed_actions": {
+			"type": "specific_ui",
+			"allowed_targets": ["training_area"]
+		  }
+		},
+		{
+		  "step_id": "step_003",
+		  "step_desc": "進入基本訓練室",
+		  "conditions": {
+			"type": "training_room_entered",
+			"room_id": "TR_001"
+		  },
+		  "actions": [
+			{
+			  "type": "highlight_ui",
+			  "target": "training_room_TR_001",
+			  "highlight_type": "red_flash"
+			}
+		  ],
+		  "allowed_actions": {
+			"type": "specific_ui",
+			"allowed_targets": ["training_room_TR_001", "back_button"]
+		  }
+		},
+		{
+		  "step_id": "step_004",
+		  "step_desc": "查看訓練指導",
+		  "dialog_id": "training_guide_002",
+		  "conditions": {
+			"type": "dialog_completed",
+			"dialog_id": "training_guide_002"
+		  },
+		  "allowed_actions": {
+			"type": "dialog_only"
+		  }
+		},
+		{
+		  "step_id": "step_005",
+		  "step_desc": "放入起始卡片",
+		  "conditions": {
+			"type": "card_in_training",
+			"card_type": "starter",
+			"min_count": 1
+		  },
+		  "allowed_actions": {
+			"type": "training_only"
+		  }
+		},
+		{
+		  "step_id": "step_006",
+		  "step_desc": "等待訓練完成",
+		  "conditions": {
+			"type": "card_level_up",
+			"card_type": "starter",
+			"target_level": 2
+		  },
+		  "allowed_actions": {
+			"type": "training_only"
+		  }
+		},
+		{
+		  "step_id": "step_007",
+		  "step_desc": "領取完成獎勵",
+		  "dialog_id": "training_complete",
+		  "conditions": {
+			"type": "dialog_completed",
+			"dialog_id": "training_complete"
+		  },
+		  "allowed_actions": {
+			"type": "dialog_only"
+		  }
+		}
+	  ],
+	  "rewards": {
+		"gold": 1000,
+		"diamond": 0,
+		"cards": []
+	  },
+	  "next_quest": ""
+	}
+  ]
+}

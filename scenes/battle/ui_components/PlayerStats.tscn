@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmlsgsl7p60xy"]
+
+[ext_resource type="Script" uid="uid://dosh0k3fh077r" path="res://scripts/ui/PlayerStats.gd" id="1_oljvi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oljvi"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.15, 0.15, 0.2, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.5, 0.6, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lt3a6"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.5, 0.5, 0)
+
+[node name="PlayerStats" type="PanelContainer"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 216.0
+offset_bottom = 135.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oljvi")
+script = ExtResource("1_oljvi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TurnLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "回合：1"
+
+[node name="WaveLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.3, 1)
+text = "WAVE: 1/1"
+
+[node name="PhaseLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = " 玩家回合"
+
+[node name="HPContainer" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="HPLabel" type="Label" parent="VBoxContainer/HPContainer"]
+custom_minimum_size = Vector2(35, 0)
+layout_mode = 2
+text = "HP:"
+
+[node name="HPBar" type="ProgressBar" parent="VBoxContainer/HPContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_lt3a6")
+value = 100.0
+
+[node name="RecoveryLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 1, 0.8, 1)
+text = "回復力：10"

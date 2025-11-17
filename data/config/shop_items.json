@@ -1,0 +1,197 @@
+{
+  "items": [
+	{
+	  "id": "GIFT_BEGINNER",
+	  "name": "新手禮包",
+	  "description": "鑽石x5, 金幣x1000, 背包+5, E001卡片, E002卡片",
+	  "price": 100,
+	  "currency": "gem",
+	  "category": "gift_packs",
+	  "icon": "res://assets/icons/gift_beginner.png",
+	  "reward_type": "bundle",
+	  "purchase_limit": 1,
+	  "reward_config": {
+		"rewards": [
+		  {"type": "currency", "currency_type": "gem", "amount": 5},
+		  {"type": "currency", "currency_type": "gold", "amount": 1000},
+		  {"type": "bag_expansion", "slots": 5},
+		  {"type": "specific_card", "card_id": "E001", "count": 1},
+		  {"type": "specific_card", "card_id": "E002", "count": 1}
+		]
+	  }
+	},
+	{
+	  "id": "GIFT_STARTER",
+	  "name": "起始禮包",
+	  "description": "鑽石x10, 金幣x5000, 背包+10",
+	  "price": 500,
+	  "currency": "gold",
+	  "category": "gift_packs",
+	  "icon": "res://assets/icons/gift_starter.png",
+	  "reward_type": "bundle",
+	  "purchase_limit": 3,
+	  "reward_config": {
+		"rewards": [
+		  {"type": "currency", "currency_type": "gem", "amount": 10},
+		  {"type": "currency", "currency_type": "gold", "amount": 5000},
+		  {"type": "bag_expansion", "slots": 10}
+		]
+	  }
+	},
+	{
+	  "id": "CARD_C001",
+	  "name": "單卡: 火焰龍",
+	  "description": "直接購買指定卡片",
+	  "price": 500,
+	  "currency": "gold",
+	  "category": "single_cards",
+	  "icon": "res://assets/cards/C001.png",
+	  "reward_type": "specific_card",
+	  "purchase_limit": 10,
+	  "reward_config": {
+		"card_id": "C001",
+		"count": 1
+	  }
+	},
+	{
+	  "id": "ITEM_GACHA_TICKET",
+	  "name": "抽卡券",
+	  "description": "用於抽卡的特殊券",
+	  "price": 5,
+	  "currency": "gem",
+	  "category": "items",
+	  "icon": "res://assets/icons/gacha_ticket.png",
+	  "reward_type": "item",
+	  "reward_config": {
+		"item_type": "gacha_ticket",
+		"count": 1
+	  }
+	},
+	{
+	  "id": "CURRENCY_GOLD_1000",
+	  "name": "金幣包(小)",
+	  "description": "獲得1000金幣",
+	  "price": 5,
+	  "currency": "gem",
+	  "category": "items",
+	  "icon": "res://assets/icons/gold_small.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gold",
+		"amount": 1000
+	  }
+	},
+	{
+	  "id": "CURRENCY_GOLD_5000",
+	  "name": "金幣包(大)",
+	  "description": "獲得5000金幣",
+	  "price": 20,
+	  "currency": "gem",
+	  "category": "items",
+	  "icon": "res://assets/icons/gold_large.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gold",
+		"amount": 5000
+	  }
+	},
+	{
+	  "id": "DIAMOND_1",
+	  "name": "1 鑽石",
+	  "description": "用金幣兌換鑽石",
+	  "price": 100,
+	  "currency": "gold",
+	  "category": "diamonds",
+	  "icon": "res://assets/icons/diamond.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gem",
+		"amount": 1
+	  }
+	},
+	{
+	  "id": "DIAMOND_5",
+	  "name": "5 鑽石",
+	  "description": "用金幣兌換鑽石 (折扣2%)",
+	  "price": 490,
+	  "currency": "gold",
+	  "category": "diamonds",
+	  "icon": "res://assets/icons/diamond.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gem",
+		"amount": 5
+	  }
+	},
+	{
+	  "id": "DIAMOND_10",
+	  "name": "10 鑽石",
+	  "description": "用金幣兌換鑽石 (折扣7%)",
+	  "price": 930,
+	  "currency": "gold",
+	  "category": "diamonds",
+	  "icon": "res://assets/icons/diamond.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gem",
+		"amount": 10
+	  }
+	},
+	{
+	  "id": "DIAMOND_20",
+	  "name": "20 鑽石",
+	  "description": "用金幣兌換鑽石 (折扣9%)",
+	  "price": 1820,
+	  "currency": "gold",
+	  "category": "diamonds",
+	  "icon": "res://assets/icons/diamond.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gem",
+		"amount": 20
+	  }
+	},
+	{
+	  "id": "DIAMOND_30",
+	  "name": "30 鑽石",
+	  "description": "用金幣兌換鑽石 (折扣10.7%)",
+	  "price": 2680,
+	  "currency": "gold",
+	  "category": "diamonds",
+	  "icon": "res://assets/icons/diamond.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gem",
+		"amount": 30
+	  }
+	},
+	{
+	  "id": "DIAMOND_40",
+	  "name": "40 鑽石",
+	  "description": "用金幣兌換鑽石 (折扣12.5%)",
+	  "price": 3500,
+	  "currency": "gold",
+	  "category": "diamonds",
+	  "icon": "res://assets/icons/diamond.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gem",
+		"amount": 40
+	  }
+	},
+	{
+	  "id": "DIAMOND_50",
+	  "name": "50 鑽石",
+	  "description": "用金幣兌換鑽石 (折扣14%)",
+	  "price": 4300,
+	  "currency": "gold",
+	  "category": "diamonds",
+	  "icon": "res://assets/icons/diamond.png",
+	  "reward_type": "currency",
+	  "reward_config": {
+		"currency_type": "gem",
+		"amount": 50
+	  }
+	}
+  ]
+}

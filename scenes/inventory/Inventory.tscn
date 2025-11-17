@@ -1,0 +1,207 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmt71n0fjp7ka"]
+
+[ext_resource type="Script" uid="uid://det55sv1824hi" path="res://scripts/ui/Inventory.gd" id="1_vugo4"]
+[ext_resource type="PackedScene" uid="uid://cltoh5fc8n4ob" path="res://scenes/inventory/CardDetailPanel.tscn" id="2_78qb0"]
+
+[sub_resource type="Gradient" id="Gradient_bg"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.08, 0.08, 0.12, 1, 0.12, 0.12, 0.16, 1, 0.08, 0.08, 0.12, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bg"]
+gradient = SubResource("Gradient_bg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+bg_color = Color(0.12, 0.12, 0.18, 0.95)
+border_width_bottom = 2
+border_color = Color(0.3, 0.6, 0.9, 0.5)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bottombar"]
+bg_color = Color(0.12, 0.12, 0.18, 0.8)
+border_width_top = 1
+border_color = Color(0.3, 0.6, 0.9, 0.3)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vugo4")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_bg")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TopBar" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/TopBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TopBar/MarginContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 45)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.9, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "← 返回"
+flat = true
+
+[node name="Spacer1" type="Control" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="TitleContainer" type="VBoxContainer" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "背包"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer/TitleContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 14
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="CapacityContainer" type="VBoxContainer" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="CapacityTitleLabel" type="Label" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer/CapacityContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.8, 1)
+theme_override_font_sizes/font_size = 12
+text = "容量"
+horizontal_alignment = 1
+
+[node name="CapacityLabel" type="Label" parent="VBoxContainer/TopBar/MarginContainer/HBoxContainer/CapacityContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "0/20"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 8
+
+[node name="BottomBar" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bottombar")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/BottomBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BottomBar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="ExpandBagButton" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "擴充背包"
+
+[node name="BatchDeleteButton" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 18
+text = "批量刪除"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SortButton" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "排序"
+
+[node name="FilterButton" type="Button" parent="VBoxContainer/BottomBar/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "篩選"
+
+[node name="CardDetailPanel" parent="." instance=ExtResource("2_78qb0")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 400.0
+offset_bottom = 500.0
+grow_horizontal = 1
+grow_vertical = 1

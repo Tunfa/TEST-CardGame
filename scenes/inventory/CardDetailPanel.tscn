@@ -1,0 +1,243 @@
+[gd_scene load_steps=5 format=3 uid="uid://cltoh5fc8n4ob"]
+
+[ext_resource type="Script" uid="uid://b63jielvrtgdx" path="res://scripts/ui/CardDetailPanel.gd" id="1_4auax"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ffqm"]
+bg_color = Color(0.1, 0.1, 0.15, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.5, 0.5, 0.8, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kw50f"]
+bg_color = Color(0.650804, 0.533961, 0.744158, 0.183)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_desc"]
+bg_color = Color(0.15, 0.15, 0.2, 0.6)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.3, 0.4, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="CardDetailPanel" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4auax")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5)
+
+[node name="Panel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -300.0
+offset_right = 210.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6ffqm")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CardName" type="Label" parent="Panel/MarginContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "卡片名稱"
+
+[node name="ElementLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HeaderContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "[火]"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HeaderContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_kw50f")
+text = "X"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CardSprite" type="ColorRect" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(380, 200)
+layout_mode = 2
+color = Color(0.3, 0.5, 0.8, 1)
+
+[node name="CardTexture" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/CardSprite"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TopRow" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/StatsContainer"]
+layout_mode = 2
+
+[node name="HPLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/StatsContainer/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 15
+text = "HP:100"
+
+[node name="RecoveryLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/StatsContainer/TopRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 1, 0.5, 1)
+theme_override_font_sizes/font_size = 15
+text = "RCV:20"
+horizontal_alignment = 2
+
+[node name="BottomRow" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/StatsContainer"]
+layout_mode = 2
+
+[node name="ATKLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/StatsContainer/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.8, 0.3, 1)
+theme_override_font_sizes/font_size = 15
+text = "ATK:50"
+
+[node name="RaceLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/StatsContainer/BottomRow"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "[人類]"
+horizontal_alignment = 2
+
+[node name="HSeparator3" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ActiveSkillContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="HeaderContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/ActiveSkillContainer"]
+layout_mode = 2
+
+[node name="SkillName" type="Label" parent="Panel/MarginContainer/VBoxContainer/ActiveSkillContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 0.3, 1)
+theme_override_font_sizes/font_size = 15
+text = "─── 主動技能 ───"
+
+[node name="CDLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/ActiveSkillContainer/HeaderContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "CD:5"
+horizontal_alignment = 2
+
+[node name="DescScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/ActiveSkillContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DescContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/ActiveSkillContainer/DescScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_desc")
+
+[node name="DescLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/ActiveSkillContainer/DescScrollContainer/DescContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "技能描述文字"
+autowrap_mode = 3
+
+[node name="HSeparator4" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LeaderSkillContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="HeaderContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer/LeaderSkillContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/MarginContainer/VBoxContainer/LeaderSkillContainer/HeaderContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.7, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "────── 隊長技能 ──────"
+horizontal_alignment = 1
+
+[node name="DescScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/LeaderSkillContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DescContainer" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/LeaderSkillContainer/DescScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_desc")
+
+[node name="DescLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/LeaderSkillContainer/DescScrollContainer/DescContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 13
+text = "隊長技能描述文字"
+autowrap_mode = 3

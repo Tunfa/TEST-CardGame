@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvsy8rjkkcgi7"]
+
+[ext_resource type="Script" uid="uid://csqxk84kwr10v" path="res://scripts/ui/DamageNumber.gd" id="1_5bx4p"]
+[ext_resource type="Shader" uid="uid://brv17a4ujgs12" path="res://scenes/battle/ui_components/fire_text.gdshader" id="1_dvotd"]
+[ext_resource type="Shader" uid="uid://bih8jivq8yngf" path="res://scenes/battle/ui_components/glow_circle.gdshader" id="2_ek54d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvuqq"]
+shader = ExtResource("1_dvotd")
+shader_parameter/fire_speed = 1.8
+shader_parameter/distortion_amp = 0.07
+shader_parameter/flame_height = 1.4
+shader_parameter/glow_intensity = 0.8
+shader_parameter/base_color = Vector3(0.8, 0.25, 0.05)
+shader_parameter/mid_color = Vector3(1, 0.6, 0.1)
+shader_parameter/tip_color = Vector3(1, 0.95, 0.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dvotd"]
+shader = ExtResource("2_ek54d")
+shader_parameter/radius = 0.45
+shader_parameter/soft_edge = 0.25
+shader_parameter/glow_color = Vector4(1, 1, 0.8, 1)
+
+[sub_resource type="Animation" id="Animation_ek54d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5bx4p"]
+resource_name = "float_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dvotd"]
+_data = {
+&"RESET": SubResource("Animation_ek54d"),
+&"float_up": SubResource("Animation_5bx4p")
+}
+
+[node name="DamageNumber" type="Label"]
+material = SubResource("ShaderMaterial_vvuqq")
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 52
+text = "100"
+script = ExtResource("1_5bx4p")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+
+[node name="Glow" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_dvotd")
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dvotd")
+}

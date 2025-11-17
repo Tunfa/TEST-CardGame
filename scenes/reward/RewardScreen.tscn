@@ -1,0 +1,153 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwg65jwbn5qg5"]
+
+[ext_resource type="Script" uid="uid://kjc0cwcximhw" path="res://scripts/ui/RewardScreen.gd" id="1_reward"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.1, 0.1, 0.15, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.9, 0.3, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button"]
+bg_color = Color(0.2, 0.6, 0.8, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="RewardScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_reward")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RewardPanel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/RewardPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/RewardPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 36
+text = "🎉 戰鬥勝利！"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RewardsContainer" type="VBoxContainer" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="GoldContainer" type="HBoxContainer" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/RewardsContainer"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/RewardsContainer/GoldContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "💰"
+
+[node name="Label" type="Label" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/RewardsContainer/GoldContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "金幣："
+
+[node name="GoldValue" type="Label" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/RewardsContainer/GoldContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "+100"
+
+[node name="ExpContainer" type="HBoxContainer" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/RewardsContainer"]
+layout_mode = 2
+
+[node name="Icon" type="Label" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/RewardsContainer/ExpContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "⭐"
+
+[node name="Label" type="Label" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/RewardsContainer/ExpContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "經驗："
+
+[node name="ExpValue" type="Label" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/RewardsContainer/ExpContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 1, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "+50"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CardsLabel" type="Label" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "🎴 獲得卡片："
+horizontal_alignment = 1
+
+[node name="CardContainer" type="HBoxContainer" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_button")
+text = "繼續冒險"
+
+[node name="ReturnButton" type="Button" parent="CenterContainer/RewardPanel/MarginContainer/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "返回主選單"

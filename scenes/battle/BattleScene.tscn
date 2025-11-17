@@ -1,0 +1,302 @@
+[gd_scene load_steps=14 format=3 uid="uid://dpggeyk51h2q4"]
+
+[ext_resource type="Script" uid="uid://cfiawas08ikdf" path="res://scripts/ui/BattleScene.gd" id="1_rjp4h"]
+[ext_resource type="Script" uid="uid://d2dd5c3t3evfw" path="res://scripts/managers/BattleManager.gd" id="2_nabc4"]
+[ext_resource type="PackedScene" uid="uid://dmlsgsl7p60xy" path="res://scenes/battle/ui_components/PlayerStats.tscn" id="3_q8wks"]
+[ext_resource type="PackedScene" uid="uid://ksbkoj0a17u4" path="res://scenes/battle/ui_components/RestButton.tscn" id="4_5282s"]
+[ext_resource type="PackedScene" uid="uid://bwb4i255sv2gu" path="res://scenes/battle/ui_components/SkillConfirmDialog.tscn" id="5_nnhtb"]
+[ext_resource type="PackedScene" uid="uid://d3goduav37y2e" path="res://scenes/battle/ui_components/TakeFightButton.tscn" id="6_nabc4"]
+[ext_resource type="PackedScene" uid="uid://f0fun1h0tmrq" path="res://scenes/battle/ui_components/ElementPanel.tscn" id="7_element"]
+[ext_resource type="PackedScene" uid="uid://duafc6jjnaym5" path="res://scenes/battle/ui_components/OrbStorageButton.tscn" id="8_5282s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnhtb"]
+bg_color = Color(0.1891, 0.28582, 0.31, 0.545098)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.983154, 0.991694, 0.996703, 0.592157)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.525)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5282s"]
+bg_color = Color(0.23, 0.2208, 0.207, 0.611765)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5, 0.5, 0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nabc4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.315575, 0.597386, 0.936851, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjp4h"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0.39, 0.3705, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 0.196078)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8wks"]
+bg_color = Color(1, 0, 0, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0, 0, 1)
+border_blend = true
+shadow_size = 10
+
+[node name="BattleScene" type="Node2D"]
+script = ExtResource("1_rjp4h")
+
+[node name="BattleManager" type="Node" parent="."]
+script = ExtResource("2_nabc4")
+
+[node name="Background" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1, 0.1, 0.15, 1)
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="PlayerStats" parent="UI" instance=ExtResource("3_q8wks")]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 192.0
+offset_bottom = 145.0
+
+[node name="SkillDialog" parent="UI" instance=ExtResource("5_nnhtb")]
+size = Vector2i(400, 206)
+
+[node name="TargetingLabel" type="Label" parent="UI"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.504167
+offset_left = -168.0
+offset_top = 8.0
+offset_right = 160.0
+offset_bottom = 53.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 32
+text = "🎯 請選擇一個敵人 🎯"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ElementPanel" parent="UI" instance=ExtResource("7_element")]
+offset_left = 700.0
+offset_top = 376.0
+offset_right = -708.0
+offset_bottom = -384.0
+
+[node name="nexttime" type="Label" parent="UI"]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 704.0
+offset_top = 408.0
+offset_right = 1216.0
+offset_bottom = 478.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_nnhtb")
+text = "火"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerArea" type="Control" parent="."]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 200.0
+offset_top = 794.0
+offset_right = 1700.0
+offset_bottom = 1064.0
+mouse_filter = 2
+
+[node name="RestButton" parent="PlayerArea" instance=ExtResource("4_5282s")]
+custom_minimum_size = Vector2(180, 50)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016
+anchor_top = 0.99
+anchor_right = 0.016
+anchor_bottom = 0.99
+offset_left = 20.0
+offset_top = -70.0
+offset_right = 200.0
+offset_bottom = -20.0
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="LeaveBattleButton" parent="PlayerArea" instance=ExtResource("6_nabc4")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 1
+offset_left = -180.0
+offset_top = -740.0
+offset_right = -8.0
+offset_bottom = -690.0
+
+[node name="HPContainer" type="HBoxContainer" parent="PlayerArea"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -730.0
+offset_top = 14.0
+offset_right = 730.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_constants/separation = 5
+
+[node name="HPBar" type="ProgressBar" parent="PlayerArea/HPContainer"]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_5282s")
+value = 100.0
+show_percentage = false
+
+[node name="HPLabel" type="Label" parent="PlayerArea/HPContainer/HPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="PlayerArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nabc4")
+
+[node name="CardContainer" type="HBoxContainer" parent="PlayerArea"]
+custom_minimum_size = Vector2(390, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -406.0
+offset_top = -89.0
+offset_right = 394.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="EnemyArea" type="Control" parent="."]
+custom_minimum_size = Vector2(1500, 300)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 200.0
+offset_top = 35.0
+offset_right = 1700.0
+offset_bottom = 335.0
+grow_horizontal = 2
+
+[node name="EnemyContainer" type="HBoxContainer" parent="EnemyArea"]
+custom_minimum_size = Vector2(320, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -100.0
+offset_right = 250.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjp4h")
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 60.0
+offset_top = 358.0
+offset_right = 1860.0
+offset_bottom = 362.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_q8wks")
+
+[node name="OrbStorageContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 70)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 697.0
+offset_top = 712.0
+offset_right = 1216.0
+offset_bottom = 782.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="OrbStorageButton" parent="OrbStorageContainer" instance=ExtResource("8_5282s")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+icon_alignment = 1
